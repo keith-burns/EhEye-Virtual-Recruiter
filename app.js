@@ -3,7 +3,6 @@ require('dotenv-extended').load();
 
 var builder = require('botbuilder');
 var restify = require('restify');
-var Store = require('./store');
 var spellService = require('./spell-service');
 
 // Setup Restify Server
@@ -19,7 +18,7 @@ var connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
+    session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance52.', session.message.text);
 });
 
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
