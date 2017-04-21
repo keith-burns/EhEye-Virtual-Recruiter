@@ -89,9 +89,9 @@ dialog.matches('askQuestions', [
 
         // test intent functionality
         session.send('Perfect. Now I\'m going to grill you.');
-        session.send("test2");
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
+        session.send(skill);
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
