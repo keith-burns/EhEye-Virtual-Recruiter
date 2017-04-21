@@ -28,9 +28,22 @@ var bot = new builder.UniversalBot(connector);
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
-bot.dialog('/', dialog);
+bot.dialog('/', [
+    function (session) {
+        session.beginDialog('/askQuestions');
+    }
+]);
+bot.dialog('/askQuestions', [
+    function (session) {
+        builder.Prompts.text(session, 'Have you ever built a virtual agent?');
+        builder.Prompts.text(session, 'Are you skilled in machine learning?');
+        builder.Prompts.text(session, 'If so, have you build linear regression models?');
+        builder.Prompts.text(session, 'When would you want to use a decision tree?');
+        builder.Prompts.text(session, 'Thank you, have a good day, bye');
+    }
+]);
 
-
+/*
 //write to file requirement
 // from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
 var fs = require('fs');
@@ -66,8 +79,9 @@ bot.use({
         next();
     }
 });
+*/
 
-
+/*
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
@@ -108,7 +122,9 @@ dialog.matches('askQuestions', [
         }
     }
 ])
+*/
 
+/*
 dialog.matches('leave', [
     function (session, args, next) {
         session.send("Okay, goodbye!");
@@ -118,7 +134,7 @@ dialog.matches('leave', [
 ])
 
 dialog.onDefault(builder.DialogAction.send("You should type something meaningful."));
-
+*/
 /*
 bot.dialog('Help', function (session) {
     session.endDialog('Hi! Try asking me things like \'what technologies will I work with\', \'what types of projects will I work on\' or \'is the pay any good\'');
