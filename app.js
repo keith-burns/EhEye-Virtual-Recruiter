@@ -30,12 +30,13 @@ bot.dialog('/', dialog);
 //var employeeID = null;
 //var isEmpIDNull = true;
 
-dialog.onDefault( 
-        builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
-    );
-
 dialog.matches('askQuestions', [
     function (session, args, next) {
+
+        /*if (isEmpIDNull) {
+            builder.Prompts.number(session, "Hi! What is your Employee ID?");
+            isEmpIDNull = false;
+        }*/
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
@@ -55,6 +56,10 @@ dialog.matches('leave', [
         session.send("Okay, goodbye!");
     }
 ])
+
+dialog.onDefault( 
+        builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
+    );
 
 /*
 bot.dialog('Candidate Pre-Screen', [
