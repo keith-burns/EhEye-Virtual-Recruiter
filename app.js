@@ -28,15 +28,12 @@ bot.dialog('/', dialog);
 
 // prompt for ID
 //var employeeID = null;
-//var isEmpIDNull = true;
+var isEmpIDNull = true;
 
 dialog.matches('askQuestions', [
     function (session, args, next) {
 
-        /*if (isEmpIDNull) {
-            builder.Prompts.number(session, "Hi! What is your Employee ID?");
-            isEmpIDNull = false;
-        }*/
+        
         session.send('come on in');
 
         //Resolve and store any entities passed from LUIS
@@ -58,8 +55,20 @@ dialog.matches('leave', [
     }
 ])
 
-dialog.onDefault( 
-        builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
+dialog.onDefault([
+    function (session, args, next) {
+        if (isEmpIDNull) {
+            builder.Prompts.number(session, "Hi! What is your Employee ID?");
+            employeeID = response.results;
+            isEmpIDNull = false;
+        }
+        else {
+            builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
+        }
+    }
+]
+
+        
     );
 
 /*
