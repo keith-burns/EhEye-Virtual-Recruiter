@@ -1,30 +1,31 @@
 {
-  "name": "botbuilder-sample-luis",
+  "name": "virtual-recruiter-luis",
   "version": "1.0.0",
-  "description": "Bot Builder Sample - LUIS",
+  "description": "Recruiter chatbot - LUIS",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Microsoft Corp.",
+  "author": "Keith Burns",
   "license": "MIT",
   "keywords": [
-    "botbuilder",
     "bots",
     "chatbots",
-    "botbuilder-samples"
+    "recruiter",
+    "virtual agent",
+    "interview"
   ],
   "bugs": {
-    "url": "https://github.com/Microsoft/BotBuilder-Samples/issues"
+    "url": "https://github.com/keith-burns/EhEye-Virtual-Recruiter/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
+    "url": "https://github.com/keith-burns/EhEye-Virtual-Recruiter"
   },
   "dependencies": {
-    "bluebird": "^3.4.7",
+    "bluebird": "^3.5.0",
     "botbuilder": "^3.7.0",
     "dotenv-extended": "^1.0.4",
-    "request": "^2.79.0",
+    "request": "^2.81.0",
     "restify": "^4.3.0"
   }
 }
