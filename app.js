@@ -30,35 +30,34 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', [
     function (session) {
-        session.beginDialog('/askQuestion1');
-        session.beginDialog('/askQuestion2');
+        session.beginDialog('/askQuestions');
     }
 ]);
 
-bot.dialog('/askQuestion1', [
+bot.dialog('/askQuestions', [
     function (session) {
         builder.Prompts.text(session, 'Have you ever built a virtual agent?');       
     },
     function (session, results) {
         if (results.response) {
-            session.send('Are you skilled in machine learning?');
+            builder.Prompts.text('Are you skilled in machine learning?');
         }
-    }
-]);
-
-bot.dialog('/askQuestion2', [
-    function (session, results) {
-        builder.Prompts.text(session, 'Are you skilled in machine learning?');
     },
     function (session, results) {
-        builder.Prompts.text(session, 'If so, have you build linear regression models?');
+        if (results.response) {
+            builder.Prompts.text('When would you want to use a decision tree?');
+        }
     },
     function (session, results) {
-        builder.Prompts.text(session, 'When would you want to use a decision tree?');
+        if (results.response) {
+            builder.Prompts.text('When would you want to use a decision tree?');
+        }
     },
     function (session, results) {
-        builder.Prompts.text(session, 'Thank you, have a good day, bye');
-    }
+        if (results.response) {
+            builder.Prompts.text('Thank you, have a good day, bye');
+        }
+    },
 ]);
 
 /*
