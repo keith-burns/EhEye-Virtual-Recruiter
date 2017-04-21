@@ -65,6 +65,7 @@ dialog.onDefault([
         else {
             builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
         }
+        next();
     }
 ]
 
