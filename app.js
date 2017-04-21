@@ -24,20 +24,15 @@ var bot = new builder.UniversalBot(connector);
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
+bot.dialog('/', dialog);
+
 // prompt for ID
-var employeeID = null;
-bot.dialog('/', [
-    function (session) {
-        if ( employeeID == null) {
-            builder.Prompts.number(session, "Hi! What is your Employee ID?");
-        }
-    },
-    function (session, results) {
-        employeeID = results.response;
-        session.send('Thank you!');
-        session.send("Now, please tell me about your experience with AI.6");
-    },
-]);
+//var employeeID = null;
+//var isEmpIDNull = true;
+
+dialog.onDefault( 
+        builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
+    );
 
 dialog.matches('askQuestions', [
     function (session, args, next) {
@@ -60,8 +55,6 @@ dialog.matches('leave', [
         session.send("Okay, goodbye!");
     }
 ])
-
-dialog.onDefault(builder.DialogAction.send("I'm sorry I didn't understand. Try again!"));
 
 /*
 bot.dialog('Candidate Pre-Screen', [
