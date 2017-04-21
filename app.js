@@ -35,12 +35,13 @@ dialog.matches('welcome', [
         if (isEmpIDNull) {
             builder.Prompts.number("Hi! What is your employee ID #?");
             isEmpIDNull = false;
+            session.send("test");
         }
         else {
             builder.Prompts.text("Tell me a little bit more about yourself.");
         }
     },
-    function (session, results) {
+    function (session) {
         session.send("Thank you.");
     }
 ])
@@ -56,10 +57,11 @@ dialog.matches('askQuestions', [
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            builder.Prompts.text("Tell me a little bit more about your experience with %d.", skill);
+            session.send("test2");
+            builder.Prompts.text("Tell me a little bit more about your experience with " + skill + ".");
         }
         else if (experience) {
-            builder.Prompts.text("Tell me more about your %d at that company.", experience);
+            builder.Prompts.text("Tell me more about your " + experience + " at that company.");
         }        
     },
     function (session, results) {
