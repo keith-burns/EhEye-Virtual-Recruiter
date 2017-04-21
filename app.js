@@ -38,6 +38,11 @@ bot.dialog('/', [
 bot.dialog('/askQuestion1', [
     function (session) {
         builder.Prompts.text(session, 'Have you ever built a virtual agent?');       
+    },
+    function (session, results) {
+        if (results.response) {
+            session.send('Are you skilled in machine learning?');
+        }
     }
 ]);
 
