@@ -71,15 +71,15 @@ bot.use({
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
-            builder.Prompts.number("Hi! What is your employee ID #?");
+            session.send("Hi! What is your employee ID #?");
             //logger.write();
             isEmpIDNull = false;
         }
         else {
-            builder.Prompts.text("Tell me a little bit more about yourself.");
+            session.send("Tell me a little bit more about yourself.");
         }
     },
-    function (session, results) {
+    function (session) {
         session.send("Thank you.");
     }
 ])
@@ -95,19 +95,18 @@ dialog.matches('askQuestions', [
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            session.send("test3");
-            builder.Prompts.text("Tell me a little bit more about your experience with " + skill + ".");
+            session.send("Tell me a little bit more about your experience with " + skill + ".");
         }
         else if (experience) {
-            builder.Prompts.text("Tell me more about your " + experience + " at that company.");
+            session.send("Tell me more about your " + experience + " at that company.");
         }        
     },
-    function (session, results) {
+    function (session) {
         if (skill == 'robotics') {
-            builder.Prompts.text("That sounds like some very good robotics experience. Have you ever used Accenture Robotics Platform?");
+            session.send("That sounds like some very good robotics experience. Have you ever used Accenture Robotics Platform?");
         }
         else {
-            builder.Prompts.text("You're not good enough.");
+            session.send("You're not good enough.");
         }
     }
 ])
