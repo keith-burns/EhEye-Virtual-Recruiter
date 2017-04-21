@@ -33,14 +33,14 @@ bot.dialog('/', dialog);
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
-            session.send("Hi! What is your employee ID #?");
+            builder.Prompts.number("Hi! What is your employee ID #?");
             isEmpIDNull = false;
         }
         else {
-            session.send("Tell me a little bit more about yourself.");
+            builder.Prompts.text("Tell me a little bit more about yourself.");
         }
     },
-    function (session) {
+    function (session, results) {
         session.send("Thank you.");
     }
 ])
@@ -49,7 +49,7 @@ dialog.matches('askQuestions', [
     function (session, args, next) {
 
         // test intent functionality
-        session.send('Perfect. Now I\'m going to grill you.');
+        builder.Prompts.text('Perfect. Now I\'m going to grill you.');
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
@@ -61,6 +61,14 @@ dialog.matches('askQuestions', [
         else if (experience) {
             session.send("Tell me more about your %d at that company.", experience);
         }        
+    },
+    function (session, results) {
+        if (skill == 'robotics') {
+            builder.Prompts.text("That sounds like some very good robotics experience. Have you ever used Accenture Robotics Platform?");
+        }
+        else {
+            builder.Prompts.text("You're not good enough.");
+        }
     }
 ])
 
