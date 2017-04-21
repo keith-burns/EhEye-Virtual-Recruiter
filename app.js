@@ -17,15 +17,46 @@ var connector = new builder.ChatConnector({
 });
 server.post('/api/messages', connector.listen());
 
-var bot = new builder.UniversalBot(connector, function (session) {
-    session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
-});
+var bot = new builder.UniversalBot(connector);
 
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
-bot.recognizer(recognizer);
+var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
+// prompt for ID
+var employeeID = null;
+bot.dialog('/', [
+    function (session) {
+        session.beginDialog('/askID');
+    },
+    function (session, results) {
+        employeeID = results.response;
+        session.send('Thank you!');
+    }
+]);
+
+// first questions
+bot.dialog('/askID', [
+    function (session) {
+        builder.Prompts.number(session, "Hi! what is your Employee ID?");
+    }
+])
+
+
+
+dialog.matches('askQuestions', [
+    function (session, args, next) {
+        //Resolve and store any entities passed from LUIS
+        var skills = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
+        var travel = builder.EntityRecognizer.findEntity(args.entities, 'travel');
+        var money = builder.EntityRecognizer.findEntity(args.entities, 'builtin.money');
+
+        
+    }
+])
+
+/*
 bot.dialog('Candidate Pre-Screen', [
     function (session, args, next) {
         session.send('Welcome to the Eye Eh Recruiting Pre-Screen! Let\'s begin our interview! What is your ID number?: \'%s\'', session.message.text);
@@ -48,6 +79,7 @@ bot.dialog('Help', function (session) {
 }).triggerAction({
     matches: 'Help'
 });
+*/
 
 // Spell Check
 if (process.env.IS_SPELL_CORRECTION_ENABLED === 'true') {
