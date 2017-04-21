@@ -37,7 +37,7 @@ dialog.matches('welcome'), [
             isEmpIDNull = false;
         }
         else {
-            session.send("Hi! Shall we get started?");
+            session.send("Tell me a little bit more about yourself.");
         }
     }
 ]
