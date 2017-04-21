@@ -35,7 +35,15 @@ bot.dialog('/', dialog);
 var fs = require('fs');
 var util = require('util');
 
-fs.unlink(__dirname + '/log.txt', next);
+var resultHandler = function(err) { 
+    if(err) {
+       console.log("unlink failed", err);
+    } else {
+       console.log("file deleted");
+    }
+}
+
+fs.unlink(__dirname + '/log.txt', resultHandler);
 var log_file = fs.createWriteStream(__dirname + '/log.txt', {flags : 'w'});
 var log_stdout = process.stdout;
 
