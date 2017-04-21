@@ -37,6 +37,7 @@ dialog.matches('askQuestions', [
             builder.Prompts.number(session, "Hi! What is your Employee ID?");
             isEmpIDNull = false;
         }*/
+        session.send('come on in');
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
