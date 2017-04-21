@@ -28,25 +28,17 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 var employeeID = null;
 bot.dialog('/', [
     function (session) {
-        if (dialog) {
-            session.beginDialog('/askID');
+        if (employeeID == undefined) {
+            builder.Prompts.number(session, "Hi! What is your Employee ID?");
         }
         
     },
     function (session, results) {
         employeeID = results.response;
         session.send('Thank you!');
-        session.endDialogWithResult(results);
-        session.send("Now, please tell me about your experience with AI.4");
+        session.send("Now, please tell me about your experience with AI.");
     },
 ]);
-
-// first questions
-bot.dialog('/askID', [
-    function (session) {
-        builder.Prompts.number(session, "Hi! What is your Employee ID?");
-    }
-])
 
 dialog.matches('askQuestions', [
     function (session, args, next) {
