@@ -40,22 +40,22 @@ bot.dialog('/askQuestions', [
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text(session, 'Are you skilled in machine learning?');
+            builder.Prompts.text(session, 'Oh, so cool! What technology was used to create Lucy Goosy?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text(session, 'If so, have you build linear regression models?');
+            builder.Prompts.text(session, 'That\'s AMAZING! Did you know that is the same framework that was used to build me?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text(session,'When would you want to use a decision tree?');
+            builder.Prompts.text(session,'Anyways, I digress. Next question. Backpropogation vs genetic algorithms - when would you use these two?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text(session, 'Thank you, have a good day, bye');
+            builder.Prompts.text(session, 'Thank you - we will get back to you shortly. Have a good day, bye');
         }
     },
 ]);
