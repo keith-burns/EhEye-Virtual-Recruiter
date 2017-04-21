@@ -49,17 +49,17 @@ dialog.matches('askQuestions', [
     function (session, args, next) {
 
         // test intent functionality
-        builder.Prompts.text('Perfect. Now I\'m going to grill you.');
+        session.send('Perfect. Now I\'m going to grill you.');
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            session.send("Tell me a little bit more about your experience with %d.", skill);
+            builder.Prompts.text("Tell me a little bit more about your experience with %d.", skill);
         }
         else if (experience) {
-            session.send("Tell me more about your %d at that company.", experience);
+            builder.Prompts.text("Tell me more about your %d at that company.", experience);
         }        
     },
     function (session, results) {
