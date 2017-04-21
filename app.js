@@ -30,25 +30,7 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
-// Install logging middleware
-bot.use({
-    botbuilder: function (session, next) {
-        if (/^log on/i.test(session.message.text)) {
-            session.userData.isLogging = true;
-            session.send('Logging is now turned on');
-        } else if (/^log off/i.test(session.message.text)) {
-            session.userData.isLogging = false;
-            session.send('Logging is now turned off');
-        } else {
-            if (session.userData.isLogging) {
-                console.log('Message Received: ', session.message.text);
-            }
-            next();
-        }
-    }
-});
 
-/*
 //write to file requirement
 // from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
 var fs = require('fs');
@@ -84,7 +66,7 @@ bot.use({
         next();
     }
 });
-*/
+
 
 dialog.matches('welcome', [
     function (session, args, next) {
