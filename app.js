@@ -5,6 +5,14 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var spellService = require('./spell-service');
 
+//write to file requirement
+var fs = require('fs');
+var filename = 'log.txt';
+fs.unlink(filename, next);
+var logger = fs.createWriteStream(filename, {
+  flags: 'a' // 'a' means appending (old data will be preserved)
+})
+
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -20,6 +28,7 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, function (session) {
     session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
+    logger.write();
 });
 
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
