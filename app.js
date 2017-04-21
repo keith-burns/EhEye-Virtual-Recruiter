@@ -30,13 +30,18 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', [
     function (session) {
-        session.beginDialog('/askQuestions');
+        session.beginDialog('/askQuestion1');
+        session.beginDialog('/askQuestion2');
     }
 ]);
-bot.dialog('/askQuestions', [
+
+bot.dialog('/askQuestion1', [
     function (session) {
         builder.Prompts.text(session, 'Have you ever built a virtual agent?');       
-    },
+    }
+]);
+
+bot.dialog('/askQuestion2', [
     function (session, results) {
         builder.Prompts.text(session, 'Are you skilled in machine learning?');
     },
@@ -48,7 +53,7 @@ bot.dialog('/askQuestions', [
     },
     function (session, results) {
         builder.Prompts.text(session, 'Thank you, have a good day, bye');
-    },
+    }
 ]);
 
 /*
