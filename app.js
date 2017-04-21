@@ -50,12 +50,14 @@ dialog.matches('askQuestions', [
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
+        session.send('is it a skill?');
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
+        session.send('or an experience?');
 
         if (skills) {
             session.send("Tell me a little bit more about your experience with ", skill, ".");
         }
-        if (experience) {
+        else if (experience) {
             session.send("Tell me more about your ", experience, "at that company.");
         }        
     }
