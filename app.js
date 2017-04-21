@@ -36,7 +36,17 @@ bot.dialog('/', [
 
 bot.dialog('/askQuestions', [
     function (session) {
-        builder.Prompts.text(session, 'Have you ever built a virtual agent?');       
+        builder.Prompts.text(session, 'Hi Jake, how are you doing today?');       
+    },
+    function (session, results) {
+        if (results.response) {
+            builder.Prompts.text(session, 'Great! Before we get started, do you have any questions?');
+        }
+    },
+    function (session, results) {
+        if (results.response) {
+            builder.Prompts.text(session, 'Awesome. Let\'s get started then. Have you ever built a virtual agent?');
+        }
     },
     function (session, results) {
         if (results.response) {
@@ -55,7 +65,7 @@ bot.dialog('/askQuestions', [
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text(session, 'Thank you - we will get back to you shortly. Have a good day, bye');
+            builder.Prompts.text(session, 'Sure. Thank you - we will get back to you shortly. Have a good day, bye');
         }
     },
 ]);
