@@ -19,7 +19,7 @@ var connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 var employeeID = null;
-var isEmpIDNull = false;
+var isEmpIDNull = true;
 
 var bot = new builder.UniversalBot(connector);
 
@@ -58,7 +58,7 @@ dialog.matches('leave', [
 dialog.onDefault([
     function (session, args, next) {
         if (isEmpIDNull) {
-            builder.Prompts.number(session, "Hi! What is your Employee ID?");
+            session.Prompts.number(session, "Hi! What is your Employee ID?");
             isEmpIDNull = false;
         }
         else {
@@ -66,8 +66,8 @@ dialog.onDefault([
         }
     },
     function (session, results) {
+        session.send("Thank you, employee #", response.results);
         employeeID = response.results;
-        session.send("Thank you!");
     }
 ]
 
