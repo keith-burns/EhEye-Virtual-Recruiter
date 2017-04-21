@@ -33,6 +33,7 @@ bot.dialog('/', [
     function (session, results) {
         employeeID = results.response;
         session.send('Thank you!');
+        session.endDialogWithResult(results);
         session.send("Now, please tell me about your experience with AI.");
     },
 ]);
