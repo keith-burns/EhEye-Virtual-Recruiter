@@ -28,7 +28,10 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 var employeeID = null;
 bot.dialog('/', [
     function (session) {
-        session.beginDialog('/askID');
+        if (dialog) {
+            session.beginDialog('/askID');
+        }
+        
     },
     function (session, results) {
         employeeID = results.response;
