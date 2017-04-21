@@ -10,12 +10,15 @@ var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
     console.log('%s listening to %s', server.name, server.url);
 });
+
 // Create connector and listen for messages
 var connector = new builder.ChatConnector({
     appId: process.env.MICROSOFT_APP_ID,
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 server.post('/api/messages', connector.listen());
+
+var isEmpIDNull = true;
 
 var bot = new builder.UniversalBot(connector);
 
@@ -26,15 +29,11 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
-// prompt for ID
-//var employeeID = null;
-var isEmpIDNull = true;
-
 dialog.matches('askQuestions', [
     function (session, args, next) {
 
-        
-        session.send('come on in');
+        // test intent functionality
+        session.send('you have found an intent!');
 
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
