@@ -30,6 +30,7 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
+/*
 //write to file requirement
 // from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
 var fs = require('fs');
@@ -65,6 +66,7 @@ bot.use({
         next();
     }
 });
+*/
 
 dialog.matches('welcome', [
     function (session, args, next) {
