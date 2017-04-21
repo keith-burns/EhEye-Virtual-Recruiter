@@ -37,16 +37,16 @@ bot.dialog('/askQuestions', [
     function (session) {
         builder.Prompts.text(session, 'Have you ever built a virtual agent?');       
     },
-    function (session) {
+    function (session, results) {
         builder.Prompts.text(session, 'Are you skilled in machine learning?');
     },
-    function (session) {
+    function (session, results) {
         builder.Prompts.text(session, 'If so, have you build linear regression models?');
     },
-    function (session) {
+    function (session, results) {
         builder.Prompts.text(session, 'When would you want to use a decision tree?');
     },
-    function (session) {
+    function (session, results) {
         builder.Prompts.text(session, 'Thank you, have a good day, bye');
     },
 ]);
