@@ -31,7 +31,7 @@ bot.dialog('/', [
         if (employeeID == undefined) {
             builder.Prompts.number(session, "Hi! What is your Employee ID?");
         }
-        
+        next();
     },
     function (session, results) {
         employeeID = results.response;
@@ -55,6 +55,14 @@ dialog.matches('askQuestions', [
         }        
     }
 ])
+
+dialog.matches('leave', [
+    function (session, args, next) {
+        session.send("Okay, goodbye!");
+    }
+])
+
+dialog.onDefault(builder.DialogAction.send("I'm sorry I didn't understand. Try again!"));
 
 /*
 bot.dialog('Candidate Pre-Screen', [
