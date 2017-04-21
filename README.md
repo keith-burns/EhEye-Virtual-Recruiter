@@ -114,21 +114,7 @@ if (process.env.IS_SPELL_CORRECTION_ENABLED === 'true') {
 
 ### Outcome
 
-You will see the following in the Bot Framework Emulator when opening and running the sample solution.
-
-![Sample Outcome](images/outcome.png)
-
-### More Information
-
-To get more information about how to get started in Bot Builder for Node and LUIS please review the following resources:
-* [Bot Builder for Node.js Reference](https://docs.botframework.com/en-us/node/builder/overview/#navtitle)
-* [Understanding Natural Language](https://docs.botframework.com/en-us/node/builder/guides/understanding-natural-language/)
-* [LUIS Help Docs](https://www.luis.ai/home/help)
-* [Cognitive Services Documentation](https://www.microsoft.com/cognitive-services/en-us/luis-api/documentation/home)
-* [IntentDialog](https://docs.botframework.com/en-us/node/builder/chat/IntentDialog/)
-* [EntityRecognizer](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.entityrecognizer.html)
-* [Alarm Bot in Node](https://github.com/Microsoft/BotBuilder/tree/master/Node/examples/basics-naturalLanguage)
-* [Microsoft Bing Spell Check API](https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api)
+To be completed.
 
 > **Limitations**  
 > The functionality provided by the Bot Framework Activity can be used across many channels. Moreover, some special channel features can be unleashed using the [Message.sourceEvent](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#sourceevent) method.
