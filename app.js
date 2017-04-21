@@ -35,13 +35,12 @@ dialog.matches('welcome', [
         if (isEmpIDNull) {
             builder.Prompts.number("Hi! What is your employee ID #?");
             isEmpIDNull = false;
-            session.send("test");
         }
         else {
             builder.Prompts.text("Tell me a little bit more about yourself.");
         }
     },
-    function (session) {
+    function (session, results) {
         session.send("Thank you.");
     }
 ])
@@ -51,13 +50,13 @@ dialog.matches('askQuestions', [
 
         // test intent functionality
         session.send('Perfect. Now I\'m going to grill you.');
-
+        session.send("test2");
         //Resolve and store any entities passed from LUIS
         var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            session.send("test2");
+            session.send("test3");
             builder.Prompts.text("Tell me a little bit more about your experience with " + skill + ".");
         }
         else if (experience) {
@@ -78,6 +77,7 @@ dialog.matches('leave', [
     function (session, args, next) {
         session.send("Okay, goodbye!");
         //log chat here
+
     }
 ])
 
