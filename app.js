@@ -58,13 +58,15 @@ dialog.onDefault([
     function (session, args, next) {
         if (isEmpIDNull) {
             builder.Prompts.number(session, "Hi! What is your Employee ID?");
-            employeeID = response.results;
+            
             isEmpIDNull = false;
         }
         else {
             builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
         }
-        next();
+    },
+    function (session, results) {
+        employeeID = response.results;
     }
 ]
 
