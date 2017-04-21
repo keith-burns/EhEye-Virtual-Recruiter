@@ -33,26 +33,33 @@ bot.dialog('/', [
     function (session, results) {
         employeeID = results.response;
         session.send('Thank you!');
+        session.send("Now, please tell us about your experience with AI.");
+    },
+    function (session) {
+        session.beginDialog('/askQuestions');
     }
 ]);
 
 // first questions
 bot.dialog('/askID', [
     function (session) {
-        builder.Prompts.number(session, "Hi! what is your Employee ID?");
+        builder.Prompts.number(session, "Hi! What is your Employee ID?");
     }
 ])
 
-
-
 dialog.matches('askQuestions', [
     function (session, args, next) {
-        //Resolve and store any entities passed from LUIS
-        var skills = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
-        var travel = builder.EntityRecognizer.findEntity(args.entities, 'travel');
-        var money = builder.EntityRecognizer.findEntity(args.entities, 'builtin.money');
 
-        
+        //Resolve and store any entities passed from LUIS
+        var skill = builder.EntityRecognizer.findEntity(args.entities, 'aiSkills');
+        var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
+
+        if (skills) {
+            session.send("Tell me a little bit more about your experience with ", skill, ".");
+        }
+        if (experience) {
+            session.send("Tell me more about your ", experience, "at that company.");
+        }        
     }
 ])
 
