@@ -30,7 +30,7 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
-dialog.matches('welcome'), [
+dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
             session.send("Hi! What is your employee ID #?");
@@ -40,7 +40,7 @@ dialog.matches('welcome'), [
             session.send("Tell me a little bit more about yourself.");
         }
     }
-]
+])
 
 dialog.matches('askQuestions', [
     function (session, args, next) {
