@@ -28,7 +28,7 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 var employeeID = null;
 bot.dialog('/', [
     function (session) {
-        if (employeeID == undefined) {
+        if (employeeID == null) {
             builder.Prompts.number(session, "Hi! What is your Employee ID?");
         }
         next();
@@ -36,7 +36,7 @@ bot.dialog('/', [
     function (session, results) {
         employeeID = results.response;
         session.send('Thank you!');
-        session.send("Now, please tell me about your experience with AI.5");
+        session.send("Now, please tell me about your experience with AI.6");
     },
 ]);
 
