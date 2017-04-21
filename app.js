@@ -6,6 +6,8 @@ var restify = require('restify');
 var spellService = require('./spell-service');
 
 //write to file requirement
+// see Middleware documentation: https://docs.botframework.com/en-us/node/builder/whats-new/#middleware
+// http://stackoverflow.com/questions/41309532/how-to-log-a-chat-conversation-with-bot-framework-c-sharp-bot-builder
 var fs = require('fs');
 var filename = 'log.txt';
 fs.unlink(filename, next);
@@ -27,6 +29,7 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, function (session) {
     session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
+    //write message
     logger.write();
 });
 
