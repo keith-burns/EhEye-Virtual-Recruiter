@@ -30,10 +30,39 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
+//write to file requirement
+// from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
+var fs = require('fs');
+var util = require('util');
+
+fs.unlink(__dirname + '/log.txt', next);
+var log_file = fs.createWriteStream(__dirname + '/log.txt', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { 
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+
+const logUserConversation = (event) => { console.log('message: ' + event.text + ', user: ' + event.address.user.name);
+};
+// Middleware for logging
+bot.use({
+    receive: function (event, next) {
+        logUserConversation(event);
+        next();
+    },
+    send: function (event, next) {
+        logUserConversation(event);
+        next();
+    }
+});
+
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
             builder.Prompts.number("Hi! What is your employee ID #?");
+            //logger.write();
             isEmpIDNull = false;
         }
         else {
