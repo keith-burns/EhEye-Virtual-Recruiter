@@ -34,6 +34,9 @@ bot.dialog('/', [
     }
 ]);
 
+/*
+    The below was hardcoded for demo purposes.
+
 bot.dialog('/askQuestions', [
     function (session) {
         builder.Prompts.text(session, 'Hi Jake, how are you doing today?');       
@@ -69,8 +72,9 @@ bot.dialog('/askQuestions', [
         }
     },
 ]);
+*/
 
-/*
+
 //write to file requirement
 // from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
 var fs = require('fs');
@@ -106,9 +110,7 @@ bot.use({
         next();
     }
 });
-*/
 
-/*
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
@@ -149,28 +151,22 @@ dialog.matches('askQuestions', [
         }
     }
 ])
-*/
 
-/*
 dialog.matches('leave', [
     function (session, args, next) {
         session.send("Okay, goodbye!");
-        //log chat here
-
     }
 ])
 
 dialog.onDefault(builder.DialogAction.send("You should type something meaningful."));
-*/
-/*
+
 bot.dialog('Help', function (session) {
     session.endDialog('Hi! Try asking me things like \'what technologies will I work with\', \'what types of projects will I work on\' or \'is the pay any good\'');
 }).triggerAction({
     matches: 'Help'
 });
-*/
 
-// Spell Check
+// Spell Check - not enabled
 if (process.env.IS_SPELL_CORRECTION_ENABLED === 'true') {
     bot.use({
         botbuilder: function (session, next) {
