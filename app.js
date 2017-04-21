@@ -39,6 +39,9 @@ dialog.matches('welcome', [
         else {
             session.send("Tell me a little bit more about yourself.");
         }
+    },
+    function (session) {
+        session.send("Thank you.");
     }
 ])
 
@@ -54,10 +57,10 @@ dialog.matches('askQuestions', [
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            session.send("Tell me a little bit more about your experience with ", skill, ".");
+            session.send("Tell me a little bit more about your experience with %s.", skill);
         }
         else if (experience) {
-            session.send("Tell me more about your ", experience, "at that company.");
+            session.send("Tell me more about your %s at that company.", experience);
         }        
     }
 ])
