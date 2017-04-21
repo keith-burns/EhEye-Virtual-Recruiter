@@ -30,6 +30,18 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
+dialog.matches('welcome'), [
+    function (session, args, next) {
+        if (isEmpIDNull) {
+            session.send("Hi! What is your employee ID #?");
+            isEmpIDNull = false;
+        }
+        else {
+            session.send("Hi! Shall we get started?");
+        }
+    }
+]
+
 dialog.matches('askQuestions', [
     function (session, args, next) {
 
@@ -52,46 +64,13 @@ dialog.matches('askQuestions', [
 dialog.matches('leave', [
     function (session, args, next) {
         session.send("Okay, goodbye!");
+        //log chat here
     }
 ])
 
-dialog.onDefault([
-    function (session, args, next) {
-        if (isEmpIDNull) {
-            session.Prompts.number(session, "Hi! What is your Employee ID?");
-            isEmpIDNull = false;
-        }
-        else {
-            builder.DialogAction.send("I'm sorry I didn't understand. Try again!")
-        }
-    },
-    function (session, results) {
-        session.send("Thank you, employee #", response.results);
-        employeeID = response.results;
-    }
-]
-
-        
-    );
+dialog.onDefault(builder.DialogAction.send("You should type something meaningful."));
 
 /*
-bot.dialog('Candidate Pre-Screen', [
-    function (session, args, next) {
-        session.send('Welcome to the Eye Eh Recruiting Pre-Screen! Let\'s begin our interview! What is your ID number?: \'%s\'', session.message.text);
-        session.send('Thank you. First question: Tell us about your experience with AI. \'%s\'', session.message.text);
-        // try extracting entities
-        var aiSkillsEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'aiSkills');
-
-        if (aiSkillsEntity) {
-            // ai skills entity detected, continue to next step
-            session.send('Thank you. You have a required skill! \'%s\'', session.message.text);
-            //next({ response: aiSkillsEntity.entity });
-        } else {
-            // no entities detected, ask user for a destination
-            session.send('You have no skills. Goodbye. \'%s\'', session.message.text);
-        }
-}]);
-
 bot.dialog('Help', function (session) {
     session.endDialog('Hi! Try asking me things like \'what technologies will I work with\', \'what types of projects will I work on\' or \'is the pay any good\'');
 }).triggerAction({
