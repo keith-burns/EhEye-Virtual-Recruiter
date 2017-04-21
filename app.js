@@ -40,22 +40,22 @@ bot.dialog('/askQuestions', [
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text('Are you skilled in machine learning?');
+            builder.Prompts.text(session, 'Are you skilled in machine learning?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text('When would you want to use a decision tree?');
+            builder.Prompts.text(session, 'If so, have you build linear regression models?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text('When would you want to use a decision tree?');
+            builder.Prompts.text(session,'When would you want to use a decision tree?');
         }
     },
     function (session, results) {
         if (results.response) {
-            builder.Prompts.text('Thank you, have a good day, bye');
+            builder.Prompts.text(session, 'Thank you, have a good day, bye');
         }
     },
 ]);
