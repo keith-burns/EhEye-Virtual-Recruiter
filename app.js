@@ -13,7 +13,6 @@ var logger = fs.createWriteStream(filename, {
   flags: 'a' // 'a' means appending (old data will be preserved)
 })
 
-
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
