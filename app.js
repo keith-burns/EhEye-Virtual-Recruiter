@@ -111,17 +111,17 @@ bot.use({
 dialog.matches('welcome', [
     function (session, args, next) {
         if (isEmpIDNull) {
-            builder.Prompts.number(session, "Hi! What is your employee ID #?");
+            builder.Prompts.number(session, 'Hi! What is your employee ID #?');
             //logger.write();
             isEmpIDNull = false;
             
         }
         else {
-            builder.Prompts.text(session, "Tell me a little bit more about yourself.");
+            builder.Prompts.text(session, 'Tell me a little bit more about yourself.');
         }
     },
     function (session, results) {
-        session.send("Thank you.");
+        session.send('Thank you.');
     }
 ])
 
@@ -135,10 +135,10 @@ dialog.matches('askQuestions', [
         var experience = builder.EntityRecognizer.findEntity(args.entities, 'experience');
 
         if (skill) {
-            builder.Prompts.text(session, "Tell me a little bit more about your experience with " + skill + ".");
+            builder.Prompts.text(session, 'Tell me a little bit more about your experience with ' + skill + '.');
         }
         else if (experience) {
-            builder.Prompts.text(session, "Tell me more about your " + experience + " at that company.");
+            builder.Prompts.text(session, 'Tell me more about your ' + experience + ' at that company.');
         }        
     },
     function (session) {
