@@ -74,7 +74,7 @@ bot.dialog('/askQuestions', [
 ]);
 */
 
-
+/* commenting out all log output code
 //write to file requirement
 // from http://stackoverflow.com/questions/8393636/node-log-in-a-file-instead-of-the-console
 var fs = require('fs');
@@ -110,6 +110,7 @@ bot.use({
         next();
     }
 });
+*/
 
 dialog.matches('welcome', [
     function (session, args, next) {
