@@ -28,11 +28,7 @@ var bot = new builder.UniversalBot(connector);
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
-bot.dialog('/', [
-    function (session) {
-        session.beginDialog('/askQuestions');
-    }
-]);
+bot.dialog('/', dialog);
 
 /*
     The below was hardcoded for demo purposes.
