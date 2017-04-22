@@ -121,7 +121,7 @@ dialog.matches('welcome', [
         }
     },
     function (session, results) {
-        session.send('Thank you.');
+        builder.Prompts.text(session, 'Thank you. Tell me a little bit more about yourself.');
     }
 ])
 
